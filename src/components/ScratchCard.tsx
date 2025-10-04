@@ -253,5 +253,3 @@ export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
     </div>
   );
 };
-
-// getRandomOffer moved to @/lib/discounts to avoid non-component exports in this file.

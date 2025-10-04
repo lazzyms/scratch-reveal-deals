@@ -6,6 +6,11 @@ export interface DiscountOffer {
 
 export const DISCOUNT_OFFERS: DiscountOffer[] = [
   {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
     label: "5% OFF",
     description: "on purchase of at least ₹250",
     isLucky: true,
@@ -18,6 +23,11 @@ export const DISCOUNT_OFFERS: DiscountOffer[] = [
   {
     label: "15% OFF",
     description: "on purchase of at least ₹1000",
+    isLucky: true,
+  },
+  {
+    label: "5% OFF",
+    description: "on purchase of at least ₹250",
     isLucky: true,
   },
   {
@@ -46,9 +56,9 @@ export const DISCOUNT_OFFERS: DiscountOffer[] = [
     isLucky: false,
   },
   {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
-    isLucky: false,
+    label: "5% OFF",
+    description: "on purchase of at least ₹250",
+    isLucky: true,
   },
   {
     label: "Better luck next time",
@@ -59,6 +69,16 @@ export const DISCOUNT_OFFERS: DiscountOffer[] = [
     label: "Better luck next time",
     description: "Try again for a discount!",
     isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "5% OFF",
+    description: "on purchase of at least ₹250",
+    isLucky: true,
   },
 ];
 
