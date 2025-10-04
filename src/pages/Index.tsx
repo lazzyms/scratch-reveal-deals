@@ -1,9 +1,6 @@
 import { useState } from "react";
-import {
-  ScratchCard,
-  getRandomOffer,
-  DISCOUNT_OFFERS,
-} from "@/components/ScratchCard";
+import { ScratchCard } from "@/components/ScratchCard";
+import { getRandomOffer } from "@/lib/discounts";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {

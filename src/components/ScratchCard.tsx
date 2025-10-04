@@ -1,82 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
-
-export interface DiscountOffer {
-  label: string;
-  description: string;
-  isLucky: boolean;
-}
+import { type DiscountOffer } from "@/lib/discounts";
 
 interface ScratchCardProps {
   offer: DiscountOffer;
   onReveal?: () => void;
 }
 
-export const DISCOUNT_OFFERS: DiscountOffer[] = [
-  {
-    label: "5% OFF",
-    description: "on purchase of at least ₹250",
-    isLucky: true,
-  },
-  {
-    label: "10% OFF",
-    description: "on purchase of at least ₹500",
-    isLucky: true,
-  },
-  {
-    label: "15% OFF",
-    description: "on purchase of at least ₹1000",
-    isLucky: true,
-  },
-  {
-    label: "20% OFF",
-    description: "on purchase of at least ₹1200",
-    isLucky: true,
-  },
-  {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
-    isLucky: false,
-  },
-  {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
-    isLucky: false,
-  },
-  {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
-    isLucky: false,
-  },
-  {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
-    isLucky: false,
-  },
-  {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
-    isLucky: false,
-  },
-  {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
-    isLucky: false,
-  },
-  {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
-    isLucky: false,
-  },
-];
-
 export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isRevealed, setIsRevealed] = useState(false);
   const [isScratching, setIsScratching] = useState(false);
-  const [scratchProgress, setScratchProgress] = useState(0);
-  const scratchedPixelsRef = useRef(0);
-  const totalPixelsRef = useRef(0);
+  // Progress tracking removed per request – keeping only reveal logic.
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -130,9 +65,6 @@ export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
       rect.width / 2,
       rect.height / 2 + 40
     );
-
-    // Calculate total pixels
-    totalPixelsRef.current = rect.width * rect.height;
   }, []);
 
   const scratch = (x: number, y: number) => {
@@ -212,9 +144,7 @@ export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
     const scratchedPercentage =
       (transparent / (imageData.data.length / 4)) * 100;
 
-    setScratchProgress(Math.min(scratchedPercentage, 100));
-
-    // Auto-reveal when 35% is scratched
+    // Auto-reveal when at least 50% is scratched
     if (scratchedPercentage >= 50 && !isRevealed) {
       // Clear the entire canvas with a smooth animation effect
       ctx.globalCompositeOperation = "destination-out";
@@ -320,35 +250,8 @@ export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
           />
         </div>
       </Card>
-
-      {/* Progress indicator */}
-      {scratchProgress > 0 && scratchProgress < 100 && !isRevealed && (
-        <div className="mt-4 px-4">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-muted-foreground">
-              Scratch Progress
-            </span>
-            <span className="text-sm font-medium text-primary">
-              {Math.round(scratchProgress)}%
-            </span>
-          </div>
-          <div className="w-full bg-muted rounded-full h-2">
-            <div
-              className="bg-primary h-2 rounded-full transition-all duration-300 ease-out"
-              style={{ width: `${scratchProgress}%` }}
-            />
-          </div>
-          {scratchProgress >= 25 && scratchProgress < 35 && (
-            <p className="text-xs text-center text-muted-foreground mt-2 animate-pulse">
-              Almost there! Keep scratching...
-            </p>
-          )}
-        </div>
-      )}
     </div>
   );
 };
 
-export const getRandomOffer = () => {
-  return DISCOUNT_OFFERS[Math.floor(Math.random() * DISCOUNT_OFFERS.length)];
-};
+// getRandomOffer moved to @/lib/discounts to avoid non-component exports in this file.
