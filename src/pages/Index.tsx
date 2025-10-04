@@ -1,42 +1,49 @@
 import { useState } from "react";
-import { ScratchCard, getRandomDiscount } from "@/components/ScratchCard";
+import { ScratchCard, getRandomOffer, DISCOUNT_OFFERS } from "@/components/ScratchCard";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
-  const [discount, setDiscount] = useState(getRandomDiscount());
+  const [offer, setOffer] = useState(getRandomOffer());
   const [revealed, setRevealed] = useState(false);
 
   const handleReset = () => {
-    setDiscount(getRandomDiscount());
+    setOffer(getRandomOffer());
     setRevealed(false);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-purple flex flex-col items-center justify-center p-6">
-      <div className="text-center mb-8 space-y-4">
-        <h1 className="text-5xl font-bold text-foreground mb-2">
+    <div className="min-h-screen bg-gradient-purple flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="text-center mb-6 sm:mb-8 space-y-2 sm:space-y-4 max-w-2xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
           Scratch & Win
         </h1>
-        <p className="text-xl text-muted-foreground">
-          Scratch the card to reveal your exclusive discount!
+        <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
+          Scratch the card to reveal your exclusive offer!
         </p>
       </div>
 
-      <ScratchCard discount={discount} onReveal={() => setRevealed(true)} />
+      <ScratchCard offer={offer} onReveal={() => setRevealed(true)} />
 
       {revealed && (
         <Button
           onClick={handleReset}
-          className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg shadow-glow"
+          className="mt-6 sm:mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg shadow-glow"
         >
           Try Again
         </Button>
       )}
 
-      <div className="mt-12 text-center">
-        <p className="text-sm text-muted-foreground">
-          Possible discounts: 5%, 10%, 15%, 20%, 25%, 50%
+      <div className="mt-8 sm:mt-12 text-center px-4">
+        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
+          Possible offers:
         </p>
+        <div className="space-y-1 sm:space-y-2 max-w-md mx-auto">
+          {DISCOUNT_OFFERS.map((discount, index) => (
+            <p key={index} className="text-xs sm:text-sm text-muted-foreground/80">
+              • {discount.label} {discount.isLucky && `- ${discount.description}`}
+            </p>
+          ))}
+        </div>
       </div>
     </div>
   );

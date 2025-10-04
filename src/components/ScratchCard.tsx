@@ -2,14 +2,46 @@ import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 
+export interface DiscountOffer {
+  label: string;
+  description: string;
+  isLucky: boolean;
+}
+
 interface ScratchCardProps {
-  discount: number;
+  offer: DiscountOffer;
   onReveal?: () => void;
 }
 
-const DISCOUNTS = [5, 10, 15, 20, 25, 50];
+export const DISCOUNT_OFFERS: DiscountOffer[] = [
+  {
+    label: "5% OFF",
+    description: "on purchase of at least ₹250",
+    isLucky: true,
+  },
+  {
+    label: "10% OFF",
+    description: "on purchase of at least ₹500",
+    isLucky: true,
+  },
+  {
+    label: "15% OFF",
+    description: "on purchase of at least ₹1000",
+    isLucky: true,
+  },
+  {
+    label: "20% OFF",
+    description: "on purchase of at least ₹1200",
+    isLucky: true,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+];
 
-export const ScratchCard = ({ discount, onReveal }: ScratchCardProps) => {
+export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isRevealed, setIsRevealed] = useState(false);
   const [isScratching, setIsScratching] = useState(false);
@@ -89,9 +121,15 @@ export const ScratchCard = ({ discount, onReveal }: ScratchCardProps) => {
     if (scratchedPercentage > 60 && !isRevealed) {
       setIsRevealed(true);
       onReveal?.();
-      toast.success(`Congratulations! You won ${discount}% OFF!`, {
-        description: "Your discount has been revealed!",
-      });
+      if (offer.isLucky) {
+        toast.success(offer.label, {
+          description: offer.description,
+        });
+      } else {
+        toast(offer.label, {
+          description: offer.description,
+        });
+      }
     }
   };
 
@@ -134,20 +172,17 @@ export const ScratchCard = ({ discount, onReveal }: ScratchCardProps) => {
 
   return (
     <Card className="relative w-full max-w-md mx-auto overflow-hidden shadow-card border-primary/20">
-      <div className="relative aspect-[3/2] bg-gradient-gold p-8 flex items-center justify-center">
+      <div className="relative aspect-[3/2] bg-gradient-gold p-4 sm:p-8 flex items-center justify-center">
         <div
-          className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 ${
+          className={`absolute inset-0 flex flex-col items-center justify-center px-4 transition-all duration-500 ${
             isRevealed ? "animate-reveal" : "opacity-0"
           }`}
         >
-          <div className="text-8xl font-bold text-primary-foreground mb-4 animate-glow-pulse">
-            {discount}%
+          <div className={`text-4xl sm:text-6xl md:text-7xl font-bold text-primary-foreground mb-2 sm:mb-4 text-center ${offer.isLucky ? 'animate-glow-pulse' : ''}`}>
+            {offer.label}
           </div>
-          <div className="text-2xl font-semibold text-primary-foreground">
-            OFF
-          </div>
-          <div className="text-lg text-primary-foreground/80 mt-2">
-            Discount Unlocked!
+          <div className="text-sm sm:text-lg md:text-xl text-primary-foreground/90 text-center px-2">
+            {offer.description}
           </div>
         </div>
         <canvas
@@ -167,6 +202,6 @@ export const ScratchCard = ({ discount, onReveal }: ScratchCardProps) => {
   );
 };
 
-export const getRandomDiscount = () => {
-  return DISCOUNTS[Math.floor(Math.random() * DISCOUNTS.length)];
+export const getRandomOffer = () => {
+  return DISCOUNT_OFFERS[Math.floor(Math.random() * DISCOUNT_OFFERS.length)];
 };
