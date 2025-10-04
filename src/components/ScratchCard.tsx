@@ -39,6 +39,36 @@ export const DISCOUNT_OFFERS: DiscountOffer[] = [
     description: "Try again for a discount!",
     isLucky: false,
   },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
 ];
 
 export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
@@ -63,13 +93,13 @@ export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
 
     // Create scratch overlay with gradient
     const gradient = ctx.createLinearGradient(0, 0, rect.width, rect.height);
-    gradient.addColorStop(0, "#c4b5fd");
-    gradient.addColorStop(1, "#8b5cf6");
+    gradient.addColorStop(0, "#9e6b82");
+    gradient.addColorStop(1, "#b88099");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, rect.width, rect.height);
 
     // Add text overlay
-    ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
     ctx.font = "bold 24px sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -95,7 +125,7 @@ export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
 
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(x * scaleX, y * scaleY, 30 * scaleX, 0, Math.PI * 2);
+    ctx.arc(x * scaleX, y * scaleY, 40 * scaleX, 0, Math.PI * 2);
     ctx.fill();
 
     // Check scratch percentage
@@ -162,7 +192,6 @@ export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
     if (!isScratching) return;
     const rect = canvasRef.current?.getBoundingClientRect();
     if (rect && e.touches[0]) {

@@ -7,8 +7,7 @@ const Index = () => {
   const [revealed, setRevealed] = useState(false);
 
   const handleReset = () => {
-    setOffer(getRandomOffer());
-    setRevealed(false);
+    window.location.reload();
   };
 
   return (
@@ -29,22 +28,9 @@ const Index = () => {
           onClick={handleReset}
           className="mt-6 sm:mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg shadow-glow"
         >
-          Try Again
+          Reset
         </Button>
       )}
-
-      <div className="mt-8 sm:mt-12 text-center px-4">
-        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
-          Possible offers:
-        </p>
-        <div className="space-y-1 sm:space-y-2 max-w-md mx-auto">
-          {DISCOUNT_OFFERS.map((discount, index) => (
-            <p key={index} className="text-xs sm:text-sm text-muted-foreground/80">
-              • {discount.label} {discount.isLucky && `- ${discount.description}`}
-            </p>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };
