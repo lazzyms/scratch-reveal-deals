@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { ScratchCard, getRandomOffer, DISCOUNT_OFFERS } from "@/components/ScratchCard";
+import {
+  ScratchCard,
+  getRandomOffer,
+  DISCOUNT_OFFERS,
+} from "@/components/ScratchCard";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -14,8 +18,11 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-purple flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="text-center mb-6 sm:mb-8 space-y-2 sm:space-y-4 max-w-2xl">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
-          Scratch & Win
+          M&M Candles
         </h1>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
+          Scratch & Win
+        </h2>
         <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
           Scratch the card to reveal your exclusive offer!
         </p>
