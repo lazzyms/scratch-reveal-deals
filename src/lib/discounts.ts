@@ -76,6 +76,46 @@ export const DISCOUNT_OFFERS: DiscountOffer[] = [
     isLucky: false,
   },
   {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
+    label: "Better luck next time",
+    description: "Try again for a discount!",
+    isLucky: false,
+  },
+  {
     label: "5% OFF",
     description: "on purchase of at least ₹250",
     isLucky: true,

@@ -23,6 +23,9 @@ const Index = () => {
         <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
           Scratch the card to reveal your exclusive offer!
         </p>
+        <p className="text-base sm:text-md md:text-lg text-muted-foreground px-4">
+          (Upto 20% OFF<sup>*</sup>)
+        </p>
       </div>
 
       <ScratchCard offer={offer} onReveal={() => setRevealed(true)} />
