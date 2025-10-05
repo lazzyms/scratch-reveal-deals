@@ -101,18 +101,18 @@ export const DISCOUNT_OFFERS: DiscountOffer[] = [
     isLucky: false,
   },
   {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
+    label: "Exclusive discount coupon ",
+    description: "on Online Order from mandmcandles.com",
     isLucky: false,
   },
   {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
+    label: "Exclusive discount coupon ",
+    description: "on Online Order from mandmcandles.com",
     isLucky: false,
   },
   {
-    label: "Better luck next time",
-    description: "Try again for a discount!",
+    label: "Exclusive discount coupon ",
+    description: "on Online Order from mandmcandles.com",
     isLucky: false,
   },
   {
