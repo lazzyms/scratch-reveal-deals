@@ -60,11 +60,6 @@ export const ScratchCard = ({ offer, onReveal }: ScratchCardProps) => {
     // Add visual hint for mobile users
     ctx.font = "14px sans-serif";
     ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-    ctx.fillText(
-      "👆 Use your finger or mouse",
-      rect.width / 2,
-      rect.height / 2 + 40
-    );
   }, []);
 
   const scratch = (x: number, y: number) => {
